@@ -8,13 +8,13 @@
 * [Melissa Loeser](http://azaryia.com/)
 * [Marion Viault](http://marionviault.com/)
 
-## Vidéo
+## Video
 
 *link*
 
 ## How to work on the project
 
-Launch iOS and android simulators
+Launch iOS and android simulators :
 ```
 ionic serve --lab
 ```
