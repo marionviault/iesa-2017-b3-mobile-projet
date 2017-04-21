@@ -10,9 +10,8 @@
 
 ## Video
 
-*https://www.youtube.com/watch?v=QIEwFzEQo8o&feature=youtu.be*
-
-*https://www.youtube.com/watch?v=Rpa65p4xM4E&feature=youtu.be*
+* https://www.youtube.com/watch?v=QIEwFzEQo8o&feature=youtu.be
+* https://www.youtube.com/watch?v=Rpa65p4xM4E&feature=youtu.be
 
 ## How to work on the project
 
