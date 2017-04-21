@@ -8,4 +8,15 @@
 * [Melissa Loeser](http://azaryia.com/)
 * [Marion Viault](http://marionviault.com/)
 
+## Vidéo
+
+*link*
+
+## How to work on the project
+
+Launch iOS and android simulators
+```
+ionic serve --lab
+```
+
 *IESA multimédia, 2017*
