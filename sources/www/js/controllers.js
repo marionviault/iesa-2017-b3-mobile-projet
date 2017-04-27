@@ -29,14 +29,21 @@ angular.module('starter.controllers', [])
 
 .controller('CameraCtrl', function($scope) {
 
-    $scope.launch = function($scope) {
+    $scope.cameraLaunch = function($scope) {
         openFilePicker();
     };
 
-    $scope.close = function() {
+    $scope.cameraClose = function() {
         document.getElementById("send-img").innerHTML = "";
+        document.getElementById("close-img").style.display = "none";
     };
 
+    $scope.cameraSend = function($scope) {
+        alert("votre image a bien été envoyée");
+        document.getElementById("send-img").innerHTML = "";
+        document.getElementById("close-img").style.display = "none";
+        document.getElementById("cameratext").value = "";
+    };
 
 });
 

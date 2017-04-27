@@ -20,7 +20,7 @@
 
 
       navigator.camera.getPicture(function cameraSuccess(imageUri) {
-      document.getElementById("send-img").innerHTML = "<h3>Ma photo :</h3><img src='"+imageUri+"' width='100%' />";
+      document.getElementById("send-img").innerHTML = "<h3>Ma photo :</h3><img src='"+imageUri+"' style='width:70%;display:block;margin:auto;' />";
       document.getElementById("close-img").style.display = "block";
     }, function cameraError(error) {
      console.log("Une erreur s'est produite.");
