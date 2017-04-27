@@ -17,20 +17,20 @@
 
 Install ionic :
 ```
-$ sudo npm install -g cordova ionic
+sudo npm install -g cordova ionic
 ```
 
 Install platforms :
 ```
-$ ionic platform add ios
-$ ionic platform add android
-$ ionic build ios
-$ ionic emulate ios
+ionic platform add ios
+ionic platform add android
+ionic build ios
+ionic emulate ios
 ```
 
 Launch iOS and android simulators :
 ```
-$ ionic serve --lab
+ionic serve --lab
 ```
 
 *IESA multimédia, 2017*
