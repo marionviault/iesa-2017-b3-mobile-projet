@@ -15,9 +15,9 @@
 
 ## How to work on the project
 
-Launch iOS and android simulators :
+Install ionic :
 ```
-$ ionic serve --lab
+$ sudo npm install -g cordova ionic
 ```
 
 Install platforms :
@@ -26,6 +26,11 @@ $ ionic platform add ios
 $ ionic platform add android
 $ ionic build ios
 $ ionic emulate ios
+```
+
+Launch iOS and android simulators :
+```
+$ ionic serve --lab
 ```
 
 *IESA multimédia, 2017*
