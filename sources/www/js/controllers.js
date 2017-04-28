@@ -56,9 +56,6 @@ angular.module('starter.controllers', [])
         document.getElementById("close-img").style.display = "none";
         document.getElementById("cameratext").value = "";
     };
-
-<<<<<<< HEAD
-=======
 })
 
 .controller('GeolocationCtrl', function($scope) {
@@ -106,8 +103,8 @@ angular.module('starter.controllers', [])
            'message: ' + error.message + '\n');
    }
 
-         navigator.geolocation.getCurrentPosition(onSuccess, onError);
->>>>>>> b73fed1dc10e57388b19bddf90c53cdae01a4d3b
+  navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
 
 });
 
