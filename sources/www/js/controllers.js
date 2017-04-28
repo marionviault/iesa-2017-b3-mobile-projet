@@ -108,35 +108,8 @@ angular.module('starter.controllers', [])
 
 });
 
-document.addEventListener("deviceready", whenLoaded, false);
-function whenLoaded() {
 
-  alert(navigator.compass);
-  // function onSuccess(heading) {
-  //     alert('Heading: ' + heading.magneticHeading)
-  // };
 
-  // function onError(compassError) {
-  //     alert('Compass error: ' + compassError.code);
-  // };
-
-  // var options = {
-  //     frequency: 1000
-  // }; // Update every 3 seconds
-
-  // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
-
-  function onSuccess(heading) {
-      alert('Heading: ' + heading.magneticHeading);
-  };
-
-  function onError(error) {
-      alert('CompassError: ' + error.code);
-  };
-
-  navigator.compass.getCurrentHeading(onSuccess, onError);
-
-}
 
 
 document.addEventListener("deviceready", onDeviceReady, false);
