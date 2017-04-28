@@ -47,4 +47,33 @@ angular.module('starter.controllers', [])
 
 });
 
+document.addEventListener("deviceready", whenLoaded, false);
+function whenLoaded() {
 
+  // function onSuccess(heading) {
+  //     alert('Heading: ' + heading.magneticHeading)
+  // };
+
+  // function onError(compassError) {
+  //     alert('Compass error: ' + compassError.code);
+  // };
+
+  // var options = {
+  //     frequency: 1000
+  // }; // Update every 3 seconds
+
+  // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
+
+  // alert('yo : ' + navigator.compass);
+
+  function onSuccess(heading) {
+      alert('Heading: ' + heading.magneticHeading);
+  };
+
+  function onError(error) {
+      alert('CompassError: ' + error.code);
+  };
+
+  navigator.compass.getCurrentHeading(onSuccess, onError);
+
+}
