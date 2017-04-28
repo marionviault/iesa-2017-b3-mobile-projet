@@ -45,6 +45,12 @@ angular.module('starter.controllers', [])
         document.getElementById("cameratext").value = "";
     };
 
+
 });
 
 
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    StatusBar.hide();
+}
