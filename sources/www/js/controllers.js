@@ -57,6 +57,8 @@ angular.module('starter.controllers', [])
         document.getElementById("cameratext").value = "";
     };
 
+<<<<<<< HEAD
+=======
 })
 
 .controller('GeolocationCtrl', function($scope) {
@@ -99,12 +101,14 @@ var radiuslessildefrance = '48.75';
           }
 
          navigator.geolocation.getCurrentPosition(onSuccess, onError);
+>>>>>>> b73fed1dc10e57388b19bddf90c53cdae01a4d3b
 
 });
 
 document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
 
+  alert(navigator.compass);
   // function onSuccess(heading) {
   //     alert('Heading: ' + heading.magneticHeading)
   // };
@@ -131,3 +135,8 @@ function whenLoaded() {
 
 }
 
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    StatusBar.hide();
+}
