@@ -45,6 +45,46 @@ angular.module('starter.controllers', [])
         document.getElementById("cameratext").value = "";
     };
 
+})
+
+.controller('GeolocationCtrl', function($scope) {
+
+  function onSuccess(position) {
+
+      var region = document.getElementById('region');
+            var title = document.getElementById('title');
+            var description = document.getElementById('description');
+
+var radiusmoreildefrance = '48.90';
+var radiuslessildefrance = '48.75';
+
+    var radiusmorebretagne = '48.90';
+    var radiuslessbretagne = '48.75';
+    position.coords.accuracy < 5;
+      if(position.coords.latitude < radiusmoreildefrance && position.coords.latitudeildefrance > radiuslessildefrance){
+        var region = document.getElementById('region');
+        var title = document.getElementById('title');
+        var description = document.getElementById('description');
+          title.innerHTML = 'Nourriture' + title.innerHTML;
+          description.innerHTML = 'langouste à la parisienne' + description.innerHTML;
+          region.innerHTML = 'Ile de France' + region.innerHTML;
+       }else if(position.coords.latitude < radiusmorebretagne && position.coords.latitude > radiuslessbretagne){
+                     var region = document.getElementById('region');
+                     var title = document.getElementById('title');
+                     var description = document.getElementById('description');
+                       title.innerHTML = 'Nourriture' + title.innerHTML;
+                       description.innerHTML = 'Crepes au caramel beurre salé' + description.innerHTML;
+                       region.innerHTML = 'Bretagne' + region.innerHTML;
+       }else{
+           title.innerHTML = 'Position introuvable' + title.innerHTML;
+       }
+       console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
+    }
+          function onError(error) {
+              alert('code: '    + error.code    + '\n' +
+                    'message: ' + error.message + '\n');
+          }
+
+         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
 });
-
-
