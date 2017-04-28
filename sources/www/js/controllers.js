@@ -57,6 +57,8 @@ angular.module('starter.controllers', [])
         document.getElementById("cameratext").value = "";
     };
 
+<<<<<<< HEAD
+=======
 })
 
 .controller('GeolocationCtrl', function($scope) {
@@ -105,6 +107,7 @@ angular.module('starter.controllers', [])
    }
 
          navigator.geolocation.getCurrentPosition(onSuccess, onError);
+>>>>>>> b73fed1dc10e57388b19bddf90c53cdae01a4d3b
 
 });
 
@@ -138,3 +141,8 @@ function whenLoaded() {
 
 }
 
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    StatusBar.hide();
+}
