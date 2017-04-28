@@ -120,8 +120,6 @@ function whenLoaded() {
 
   // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
 
-  // alert('yo : ' + navigator.compass);
-
   function onSuccess(heading) {
       alert('Heading: ' + heading.magneticHeading);
   };
