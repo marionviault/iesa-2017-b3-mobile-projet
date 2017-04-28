@@ -11,11 +11,25 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
+    $scope.chats = Chats.all();
 
    $scope.chats.forEach(function(element) {
-      Chats.searchContact(element.name, element.id);
+
+     var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+     var options      = new ContactFindOptions();
+     options.filter   = element.name;
+     options.multiple = false;
+     options.desiredFields = [navigator.contacts.fieldType.id];
+     options.hasPhoneNumber = true;
+
+      navigator.contacts.find(fields, function(contacts){
+         if(contacts.length > 0) $scope.chats[element.id].isContact = "oui";
+      }, function(){
+            alert("une erreur s'est produite")
+      }, options);
+
    });
+
 
   $scope.remove = function(chat) {
     Chats.remove(chat);
@@ -24,6 +38,22 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
+  $scope.chats = Chats.all();
+
+
+   var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+   var options      = new ContactFindOptions();
+   options.filter   = $scope.chat.name;
+   options.multiple = false;
+   options.desiredFields = [navigator.contacts.fieldType.id];
+   options.hasPhoneNumber = true;
+
+
+    navigator.contacts.find(fields, function(contacts){
+       if(contacts.length > 0) $scope.chats[$scope.chat.id].isContact = "oui";
+    }, function(){
+          alert("une erreur s'est produite")
+    }, options);
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -56,78 +86,61 @@ angular.module('starter.controllers', [])
         document.getElementById("close-img").style.display = "none";
         document.getElementById("cameratext").value = "";
     };
-
 })
 
 .controller('GeolocationCtrl', function($scope) {
 
   function onSuccess(position) {
+      $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function( data ) {
+            console.log(data);
+            console.log(data.results[6].address_components[0].long_name);
 
-
-      var region = document.getElementById('region');
+            var dataRegion = data.results[6].address_components[0].long_name;
+            var region = document.getElementById('region');
             var title = document.getElementById('title');
             var description = document.getElementById('description');
 
-var radiusmoreildefrance = '48.90';
-var radiuslessildefrance = '48.75';
+            switch (dataRegion) {
+              case "Île-de-France":
 
-    var radiusmorebretagne = '48.90';
-    var radiuslessbretagne = '48.75';
-    position.coords.accuracy < 5;
-      if(position.coords.latitude < radiusmoreildefrance && position.coords.latitudeildefrance > radiuslessildefrance){
-        var region = document.getElementById('region');
-        var title = document.getElementById('title');
-        var description = document.getElementById('description');
-          title.innerHTML = 'Nourriture' + title.innerHTML;
-          description.innerHTML = 'langouste à la parisienne' + description.innerHTML;
-          region.innerHTML = 'Ile de France' + region.innerHTML;
-       }else if(position.coords.latitude < radiusmorebretagne && position.coords.latitude > radiuslessbretagne){
-                     var region = document.getElementById('region');
-                     var title = document.getElementById('title');
-                     var description = document.getElementById('description');
-                       title.innerHTML = 'Nourriture' + title.innerHTML;
-                       description.innerHTML = 'Crepes au caramel beurre salé' + description.innerHTML;
-                       region.innerHTML = 'Bretagne' + region.innerHTML;
-       }else{
-           title.innerHTML = 'Position introuvable' + title.innerHTML;
-       }
-       console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
-    }
-          function onError(error) {
-              alert('code: '    + error.code    + '\n' +
-                    'message: ' + error.message + '\n');
-          }
+                title.innerHTML = 'Plats' + title.innerHTML;
+                description.innerHTML = '<img src="http://www.toutlevin.com/uploads/dish/langouste-mayonnaise-big.jpg" alt="langouste à la parisienne" width="300px"/>' + description.innerHTML;
+                region.innerHTML = dataRegion;
+              break;
+              case "Bretagne":
 
-         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+               title.innerHTML = 'Plats' + title.innerHTML;
+               description.innerHTML = '<img src="https://kiwings-images-prod.s3-eu-west-1.amazonaws.com/recipes/527a206fb1045.jpeg" alt="langouste à la parisienne" width="300px"/>' + description.innerHTML;
+               region.innerHTML = dataRegion;
+              break;
+              case "Provence-Alpes-Côte d'Azur":
+
+               title.innerHTML = 'Plats' + title.innerHTML;
+               description.innerHTML = '<img src="http://www.bestcharmingbnb.com/tables-hote/gastronomie-provence-alpes-cote-dazur/legumes-grilles-gastronomie-provence-alpes-cote-d-azur-4.jpg" alt="langouste à la parisienne" width="300px"/>' + description.innerHTML;
+               region.innerHTML = dataRegion;
+              break;
+              default:
+                 description.innerHTML = 'Aucune thématique est disponible pour cette région' + description.innerHTML;
+                 region.innerHTML = dataRegion;
+             }
+
+             console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
+
+      });
+  }
+  function onError(error) {
+      alert('code: '    + error.code    + '\n' +
+           'message: ' + error.message + '\n');
+   }
+
+  navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
 
 });
 
-document.addEventListener("deviceready", whenLoaded, false);
-function whenLoaded() {
 
-  // function onSuccess(heading) {
-  //     alert('Heading: ' + heading.magneticHeading)
-  // };
 
-  // function onError(compassError) {
-  //     alert('Compass error: ' + compassError.code);
-  // };
-
-  // var options = {
-  //     frequency: 1000
-  // }; // Update every 3 seconds
-
-  // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
-
-  function onSuccess(heading) {
-      alert('Heading: ' + heading.magneticHeading);
-  };
-
-  function onError(error) {
-      alert('CompassError: ' + error.code);
-  };
-
-  navigator.compass.getCurrentHeading(onSuccess, onError);
-
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    StatusBar.hide();
 }
-

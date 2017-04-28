@@ -3,7 +3,7 @@ angular.module('starter.services', [])
 .factory('Chats', function() {
 
   // Might use a resource here that returns a JSON array
-
+  var _this = this;
   // Some fake testing data
   var chats = [{
     id: 0,
@@ -56,20 +56,6 @@ angular.module('starter.services', [])
         }
       }
       return null;
-    },
-    searchContact: function(chatName, chatId){
-         var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-         var options      = new ContactFindOptions();
-         options.filter   = chatName;
-         options.multiple = false;
-         options.desiredFields = [navigator.contacts.fieldType.id];
-         options.hasPhoneNumber = true;
-
-        navigator.contacts.find(fields, function(contacts){
-           if(contacts.length > 0) chats[chatId].isContact = "oui";
-        }, function(){
-              console.log("une erreur s'est produite")
-        }, options);
     }
   };
 });
