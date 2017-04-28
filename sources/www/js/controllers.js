@@ -12,6 +12,11 @@ angular.module('starter.controllers', [])
   //});
 
   $scope.chats = Chats.all();
+
+   $scope.chats.forEach(function(element) {
+      Chats.searchContact(element.name, element.id);
+   });
+
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
@@ -27,7 +32,14 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraCtrl', function($scope) {
+.controller('CameraCtrl', function($scope, Chats) {
+
+    $scope.chats =  Chats.all();
+
+     $scope.check = function(idChat) {
+          $scope.chats[idChat].check = !$scope.chats[idChat].check;
+     };
+
 
     $scope.cameraLaunch = function($scope) {
         openFilePicker();
@@ -45,9 +57,83 @@ angular.module('starter.controllers', [])
         document.getElementById("cameratext").value = "";
     };
 
+<<<<<<< HEAD
+=======
+})
+
+.controller('GeolocationCtrl', function($scope) {
+
+  function onSuccess(position) {
+
+
+      var region = document.getElementById('region');
+            var title = document.getElementById('title');
+            var description = document.getElementById('description');
+
+var radiusmoreildefrance = '48.90';
+var radiuslessildefrance = '48.75';
+
+    var radiusmorebretagne = '48.90';
+    var radiuslessbretagne = '48.75';
+    position.coords.accuracy < 5;
+      if(position.coords.latitude < radiusmoreildefrance && position.coords.latitudeildefrance > radiuslessildefrance){
+        var region = document.getElementById('region');
+        var title = document.getElementById('title');
+        var description = document.getElementById('description');
+          title.innerHTML = 'Nourriture' + title.innerHTML;
+          description.innerHTML = 'langouste à la parisienne' + description.innerHTML;
+          region.innerHTML = 'Ile de France' + region.innerHTML;
+       }else if(position.coords.latitude < radiusmorebretagne && position.coords.latitude > radiuslessbretagne){
+                     var region = document.getElementById('region');
+                     var title = document.getElementById('title');
+                     var description = document.getElementById('description');
+                       title.innerHTML = 'Nourriture' + title.innerHTML;
+                       description.innerHTML = 'Crepes au caramel beurre salé' + description.innerHTML;
+                       region.innerHTML = 'Bretagne' + region.innerHTML;
+       }else{
+           title.innerHTML = 'Position introuvable' + title.innerHTML;
+       }
+       console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
+    }
+          function onError(error) {
+              alert('code: '    + error.code    + '\n' +
+                    'message: ' + error.message + '\n');
+          }
+
+         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+>>>>>>> b73fed1dc10e57388b19bddf90c53cdae01a4d3b
 
 });
 
+document.addEventListener("deviceready", whenLoaded, false);
+function whenLoaded() {
+
+  alert(navigator.compass);
+  // function onSuccess(heading) {
+  //     alert('Heading: ' + heading.magneticHeading)
+  // };
+
+  // function onError(compassError) {
+  //     alert('Compass error: ' + compassError.code);
+  // };
+
+  // var options = {
+  //     frequency: 1000
+  // }; // Update every 3 seconds
+
+  // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
+
+  function onSuccess(heading) {
+      alert('Heading: ' + heading.magneticHeading);
+  };
+
+  function onError(error) {
+      alert('CompassError: ' + error.code);
+  };
+
+  navigator.compass.getCurrentHeading(onSuccess, onError);
+
+}
 
 
 document.addEventListener("deviceready", onDeviceReady, false);

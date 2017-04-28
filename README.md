@@ -8,12 +8,26 @@
 * [Melissa Loeser](http://azaryia.com/)
 * [Marion Viault](http://marionviault.com/)
 
-## Video
+## What is Schmilblick?
+
+Schmilblick 
+
+## 1st video
 
 * https://www.youtube.com/watch?v=QIEwFzEQo8o&feature=youtu.be
 * https://www.youtube.com/watch?v=Rpa65p4xM4E&feature=youtu.be
 
 ## How to work on the project
+
+Clone project :
+```
+git clone https://github.com/marionviault/iesa-2017-b3-mobile-projet.git
+```
+
+Go in the project :
+```
+cd iesa-2017-b3-mobile-projet/sources
+```
 
 Install ionic :
 ```
@@ -25,7 +39,7 @@ Install platforms :
 ionic platform add ios
 ionic platform add android
 ionic build ios
-ionic emulate ios
+ionic build android
 ```
 
 Launch iOS and android simulators :
