@@ -12,6 +12,11 @@ angular.module('starter.controllers', [])
   //});
 
   $scope.chats = Chats.all();
+
+   $scope.chats.forEach(function(element) {
+      Chats.searchContact(element.name, element.id);
+   });
+
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
@@ -27,7 +32,14 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraCtrl', function($scope) {
+.controller('CameraCtrl', function($scope, Chats) {
+
+    $scope.chats =  Chats.all();
+
+     $scope.check = function(idChat) {
+          $scope.chats[idChat].check = !$scope.chats[idChat].check;
+     };
+
 
     $scope.cameraLaunch = function($scope) {
         openFilePicker();
