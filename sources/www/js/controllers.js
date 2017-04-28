@@ -59,20 +59,26 @@ angular.module('starter.controllers', [])
             var title = document.getElementById('title');
             var description = document.getElementById('description');
 
-            if(dataRegion == "Île-de-France"){
+            switch (dataRegion) {
+              case "Île-de-France":
 
-                title.innerHTML = 'Nourriture' + title.innerHTML;
-                description.innerHTML = 'langouste à la parisienne' + description.innerHTML;
+                title.innerHTML = 'Plats' + title.innerHTML;
+                description.innerHTML = '<img src="http://www.toutlevin.com/uploads/dish/langouste-mayonnaise-big.jpg" alt="langouste à la parisienne" width="300px"/>' + description.innerHTML;
                 region.innerHTML = dataRegion;
+              break;
+              case "Bretagne":
 
-            }else if(dataRegion == "Bretagne"){
-
-               title.innerHTML = 'Nourriture' + title.innerHTML;
-               description.innerHTML = 'Crepes au caramel beurre salé' + description.innerHTML;
+               title.innerHTML = 'Plats' + title.innerHTML;
+               description.innerHTML = '<img src="https://kiwings-images-prod.s3-eu-west-1.amazonaws.com/recipes/527a206fb1045.jpeg" alt="langouste à la parisienne" width="300px"/>' + description.innerHTML;
                region.innerHTML = dataRegion;
+              break;
+              case "Provence-Alpes-Côte d'Azur":
 
-             }else{
-
+               title.innerHTML = 'Plats' + title.innerHTML;
+               description.innerHTML = '<img src="http://www.bestcharmingbnb.com/tables-hote/gastronomie-provence-alpes-cote-dazur/legumes-grilles-gastronomie-provence-alpes-cote-d-azur-4.jpg" alt="langouste à la parisienne" width="300px"/>' + description.innerHTML;
+               region.innerHTML = dataRegion;
+              break;
+              default:
                  description.innerHTML = 'Aucune thématique est disponible pour cette région' + description.innerHTML;
                  region.innerHTML = dataRegion;
              }
