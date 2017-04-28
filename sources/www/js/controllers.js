@@ -105,6 +105,7 @@ var radiuslessildefrance = '48.75';
 document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
 
+  alert(navigator.compass);
   // function onSuccess(heading) {
   //     alert('Heading: ' + heading.magneticHeading)
   // };

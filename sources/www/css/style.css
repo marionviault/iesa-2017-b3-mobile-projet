@@ -57,3 +57,16 @@ a.item-content span{
   padding: 12px;
   font-weight: bold;
 }
+
+label{
+  font-size: 14Px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 20px;
+  display: inline-block;
+}
+input#cameratext{
+  width:100%;
+  border: 1px solid black;
+  padding-left: 10px;
+}
