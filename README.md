@@ -42,9 +42,15 @@ ionic build ios
 ionic build android
 ```
 
-Launch iOS and android simulators :
+Launch iOS and android simulators on navigator :
 ```
 ionic serve --lab
+```
+
+Or launch iOS and android simulators alones :
+```
+ionic emulate ios
+ionic emulate android
 ```
 
 *IESA multimédia, 2017*
