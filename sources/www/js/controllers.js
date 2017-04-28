@@ -50,41 +50,41 @@ angular.module('starter.controllers', [])
 .controller('GeolocationCtrl', function($scope) {
 
   function onSuccess(position) {
+      $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function( data ) {
+            console.log(data);
+            console.log(data.results[6].address_components[0].long_name);
 
-
-      var region = document.getElementById('region');
+            var dataRegion = data.results[6].address_components[0].long_name;
+            var region = document.getElementById('region');
             var title = document.getElementById('title');
             var description = document.getElementById('description');
 
-var radiusmoreildefrance = '48.90';
-var radiuslessildefrance = '48.75';
+            if(dataRegion == "Île-de-France"){
 
-    var radiusmorebretagne = '48.90';
-    var radiuslessbretagne = '48.75';
-    position.coords.accuracy < 5;
-      if(position.coords.latitude < radiusmoreildefrance && position.coords.latitudeildefrance > radiuslessildefrance){
-        var region = document.getElementById('region');
-        var title = document.getElementById('title');
-        var description = document.getElementById('description');
-          title.innerHTML = 'Nourriture' + title.innerHTML;
-          description.innerHTML = 'langouste à la parisienne' + description.innerHTML;
-          region.innerHTML = 'Ile de France' + region.innerHTML;
-       }else if(position.coords.latitude < radiusmorebretagne && position.coords.latitude > radiuslessbretagne){
-                     var region = document.getElementById('region');
-                     var title = document.getElementById('title');
-                     var description = document.getElementById('description');
-                       title.innerHTML = 'Nourriture' + title.innerHTML;
-                       description.innerHTML = 'Crepes au caramel beurre salé' + description.innerHTML;
-                       region.innerHTML = 'Bretagne' + region.innerHTML;
-       }else{
-           title.innerHTML = 'Position introuvable' + title.innerHTML;
-       }
-       console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
-    }
-          function onError(error) {
-              alert('code: '    + error.code    + '\n' +
-                    'message: ' + error.message + '\n');
-          }
+                title.innerHTML = 'Nourriture' + title.innerHTML;
+                description.innerHTML = 'langouste à la parisienne' + description.innerHTML;
+                region.innerHTML = dataRegion;
+
+            }else if(dataRegion == "Bretagne"){
+
+               title.innerHTML = 'Nourriture' + title.innerHTML;
+               description.innerHTML = 'Crepes au caramel beurre salé' + description.innerHTML;
+               region.innerHTML = dataRegion;
+
+             }else{
+
+                 description.innerHTML = 'Aucune thématique est disponible pour cette région' + description.innerHTML;
+                 region.innerHTML = dataRegion;
+             }
+
+             console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
+
+      });
+  }
+  function onError(error) {
+      alert('code: '    + error.code    + '\n' +
+           'message: ' + error.message + '\n');
+   }
 
          navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
