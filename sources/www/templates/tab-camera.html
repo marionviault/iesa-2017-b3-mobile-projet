@@ -3,12 +3,21 @@
     <h2>Envoyer un schmilblick</h2>
     <p id="send-img"></p>
     <button ng-click="cameraClose()" id="close-img" style="display:none;">Supprimer</button>
-    <button ng-click="cameraLaunch()" id="button-send-img">Choisir une image</button>
+    <button ng-click="cameraLaunch()" id="button-send-img" class="btnStylay">Choisir une image</button>
     <br/>
     <p>
-      <label for="cameratext">Réponse : </label>
-      <input type="text" name="cameratext" id="cameratext" style="border:1px solid black;"/>
-      <button type="submit" ng-click="cameraSend()">OK</button>
+      <label for="cameratext">Mot à deviner : </label>
+      <input type="text" name="cameratext" id="cameratext"/>
     </p>
+
+    <ion-list>
+    <ion-item class="item-remove-animate item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" ng-click="check(chat.id)">
+      <h2>{{chat.name}}</h2>
+      <span ng-class="{'checked': chat.check}"><i class="icon ion-checkmark icon-accessory"></i></span>
+    </ion-item>
+  </ion-list>
+
+    <p><button type="submit" ng-click="cameraSend()" class="btnStylay">Envoyer</button></p>
+
   </ion-content>
 </ion-view>

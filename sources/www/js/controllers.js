@@ -12,6 +12,11 @@ angular.module('starter.controllers', [])
   //});
 
   $scope.chats = Chats.all();
+
+   $scope.chats.forEach(function(element) {
+      Chats.searchContact(element.name, element.id);
+   });
+
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
@@ -27,7 +32,14 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraCtrl', function($scope) {
+.controller('CameraCtrl', function($scope, Chats) {
+
+    $scope.chats =  Chats.all();
+
+     $scope.check = function(idChat) {
+          $scope.chats[idChat].check = !$scope.chats[idChat].check;
+     };
+
 
     $scope.cameraLaunch = function($scope) {
         openFilePicker();
@@ -99,6 +111,7 @@ angular.module('starter.controllers', [])
 document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
 
+  alert(navigator.compass);
   // function onSuccess(heading) {
   //     alert('Heading: ' + heading.magneticHeading)
   // };
@@ -112,8 +125,6 @@ function whenLoaded() {
   // }; // Update every 3 seconds
 
   // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
-
-  // alert('yo : ' + navigator.compass);
 
   function onSuccess(heading) {
       alert('Heading: ' + heading.magneticHeading);

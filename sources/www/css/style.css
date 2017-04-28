@@ -1,3 +1,6 @@
+/* Empty. Add your own CSS if you like */
+
+
 #astuce-container{
 	background: url(../img/astuce.png) no-repeat center center / cover;
     height: 100%;
@@ -20,4 +23,50 @@
     position: absolute;
     bottom: 10%;
     width: 100%;
+}
+
+a.item-content span{
+  content: "";
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 40px;
+  transform: translateY(-50%);
+  top: 50%;
+  background: url(../img/msn.png);
+  background-size: contain;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+}
+.checked .ion-checkmark:before{
+  color:green;
+}
+
+.item.activated{
+  background:#fff;
+}
+
+.btnStylay{
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: #f7aa10;
+  border: none;
+  color: #fff;
+  padding: 12px;
+  font-weight: bold;
+}
+
+label{
+  font-size: 14Px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 20px;
+  display: inline-block;
+}
+input#cameratext{
+  width:100%;
+  border: 1px solid black;
+  padding-left: 10px;
 }
