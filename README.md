@@ -39,7 +39,7 @@ Install platforms :
 ionic platform add ios
 ionic platform add android
 ionic build ios
-ionic build andoid
+ionic build android
 ```
 
 Launch iOS and android simulators :
