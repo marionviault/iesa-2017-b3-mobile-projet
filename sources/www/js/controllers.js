@@ -11,11 +11,25 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
+    $scope.chats = Chats.all();
 
    $scope.chats.forEach(function(element) {
-      Chats.searchContact(element.name, element.id);
+
+     var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+     var options      = new ContactFindOptions();
+     options.filter   = element.name;
+     options.multiple = false;
+     options.desiredFields = [navigator.contacts.fieldType.id];
+     options.hasPhoneNumber = true;
+
+      navigator.contacts.find(fields, function(contacts){
+         if(contacts.length > 0) $scope.chats[element.id].isContact = "oui";
+      }, function(){
+            alert("une erreur s'est produite")
+      }, options);
+
    });
+
 
   $scope.remove = function(chat) {
     Chats.remove(chat);
@@ -24,6 +38,22 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
+  $scope.chats = Chats.all();
+
+
+   var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+   var options      = new ContactFindOptions();
+   options.filter   = $scope.chat.name;
+   options.multiple = false;
+   options.desiredFields = [navigator.contacts.fieldType.id];
+   options.hasPhoneNumber = true;
+
+
+    navigator.contacts.find(fields, function(contacts){
+       if(contacts.length > 0) $scope.chats[$scope.chat.id].isContact = "oui";
+    }, function(){
+          alert("une erreur s'est produite")
+    }, options);
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -107,8 +137,6 @@ angular.module('starter.controllers', [])
 
 
 });
-
-
 
 
 
