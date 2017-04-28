@@ -10,12 +10,17 @@
 
 ## What is Schmilblick?
 
-Schmilblick 
+Schmilblick, l’appli qui vous permet de faire une bonne action tout en vous amusant !
+Devinez des mots d’après des indices ou des images, gagnez des trophées et des pièces pour acheter des bonus et soutenez ainsi vos associations préférées dans la joie et la bonne humeur !
 
-## 1st video
+## Video n°1
 
 * https://www.youtube.com/watch?v=QIEwFzEQo8o&feature=youtu.be
 * https://www.youtube.com/watch?v=Rpa65p4xM4E&feature=youtu.be
+
+## Video n°2
+
+https://www.youtube.com/watch?v=VRZV-VwRv2A&feature=youtu.be
 
 ## How to work on the project
 
