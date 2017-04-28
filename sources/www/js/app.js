@@ -87,7 +87,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'CameraCtrl'
         }
       }
-    });
+    })
+
+  .state('tab.geolocation', {
+        url: '/geolocation',
+        views: {
+          'tab-geolocation': {
+            templateUrl: 'templates/tab-geolocation.html',
+            controller: 'GeolocationCtrl'
+          }
+        }
+    })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
