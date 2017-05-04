@@ -121,6 +121,7 @@ angular.module('starter.controllers', [])
             console.log(data.results[6].address_components[0].long_name);
 
             var dataRegion = data.results[6].address_components[0].long_name;
+            console.log(dataRegion);
             var region = document.getElementById('region');
             var title = document.getElementById('title');
             var description = document.getElementById('description');
