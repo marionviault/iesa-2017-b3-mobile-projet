@@ -25,10 +25,3 @@ function addSchm(schmId, schmName, schmImage, schmFrom, schmTo) {
 
 // addSchm("1", "banane", schmImage1, "Tomtom", "Floflo");
 
-storageRef.child('Schm/banana-close-spotted.jpg').getDownloadURL().then(function (url) {
-
-    var img = document.getElementById('picture');
-    addSchm("1", "banane", url, "Tomtom", "Floflo");
-
-}).catch(function (error) {
-});
