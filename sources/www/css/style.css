@@ -70,3 +70,31 @@ input#cameratext{
   border: 1px solid black;
   padding-left: 10px;
 }
+
+
+
+img.selected{
+  border:4px solid green
+}
+
+#username{
+    z-index: 40;
+    margin-top: 100px;
+    position: relative;
+}
+
+#username img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 20px;
+    vertical-align: -6px;
+}
+
+.platform-ios #username{
+  margin-top:80px;
+}
+
+.scroll{
+  margin-top:50px;
+}

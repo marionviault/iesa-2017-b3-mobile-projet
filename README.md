@@ -75,6 +75,16 @@ ionic build ios
 ionic build android
 ```
 
+Install plugins :
+```
+cordova plugin add cordova-plugin-splashscreen
+cordova plugin add cordova-plugin-contacts
+cordova plugin add cordova-plugin-camera
+cordova plugin add cordova-plugin-geolocation
+cordova plugin add cordova-plugin-statusbar
+(optionnal) cordova plugin add cordova-plugin-device-orientation
+```
+
 Launch iOS and android simulators on navigator :
 ```
 ionic serve --lab
