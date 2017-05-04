@@ -137,8 +137,11 @@ angular.module('starter.controllers', [])
 
 });
 
+
 document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
+
+StatusBar.hide();
 
   function onSuccess(heading) {
      //alert("heading :" +heading.magneticHeading);
@@ -159,10 +162,4 @@ function whenLoaded() {
   var watchID = navigator.compass.watchHeading(onSuccess, onError, options);
 
 
-}
-
-
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    StatusBar.hide();
 }
