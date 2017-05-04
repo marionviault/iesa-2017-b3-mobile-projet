@@ -3,7 +3,7 @@
 L'agilité, c'est un mode de fonctionnement pour réaliser un projet qui se veut souple et itératif.  Par rapport à un fonctionnement classique, ici le client est plus présent, plus demandé, afin qu'il suive le projet de près et puisse apporter son avis et ses demandes de modifiactions rapidement.
 
 ## Animal : Le caméléon.
-Le caméléon est calme, il avance à son rythme, pas à pas et sans stress afin d'atteindre son objectif. Il s'adapte à son environnement et à la situation, et lorsque c'est nécessaire, il peut faire preuve de rapidité pour capturersa cible.
+Le caméléon est calme, il avance à son rythme, pas à pas et sans stress afin d'atteindre son objectif. Il s'adapte à son environnement et à la situation, et lorsque c'est nécessaire, il peut faire preuve de rapidité pour capturer sa cible.
 
 Mélissa : L'agilité permet de faire un suivi continu avec les retours du client. Je me suis aperçu qu'en appliquant cette méthode, nous avons une meilleure connaissance des tâches des membres de l'équipe du projet et de mieux suivre l'avancement de celles-ci. Ainsi, nous pouvons mieux apercevoir quand un membre de la team met trop de temps ou qu'il est bloqué sur une tâche, donc nous devons l'aider. La méthode d'agilité permet de mieux comprendre les demandes du client et de voir avec celui-ci ces priorités pour les composants du projet final.
 Cette méthode est très structurée et vraiment ancrée dans la team du projet, car nous travaillons vraiment en équipe. Elle favorise énormément la demande du client et pour le groupe de projet elle engendre plusieurs impératifs (en termes de temps et de livrable). Malgré ces impératifs, cette méthode reste intéressante.
