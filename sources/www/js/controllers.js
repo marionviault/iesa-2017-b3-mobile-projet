@@ -116,7 +116,37 @@ angular.module('starter.controllers', [])
 
   function onSuccessGeo(position) {
 
-      $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function( data ) {
+
+    var latitudeGeoloc = document.getElementById('latitudeGeoloc').value;
+    var longitudeGeoloc = document.getElementById('longitudeGeoloc').value;
+
+    var getJSON = function(url, successHandler, errorHandler) {
+      var xhr = typeof XMLHttpRequest != 'undefined'
+        ? new XMLHttpRequest()
+        : new ActiveXObject('Microsoft.XMLHTTP');
+      xhr.open('get', url, true);
+      xhr.responseType = 'json';
+      xhr.onreadystatechange = function() {
+        var status;
+        var data;
+        // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
+        if (xhr.readyState == 4) { // `DONE`
+          status = xhr.status;
+          if (status == 200) {
+            successHandler && successHandler(xhr.response);
+          } else {
+            errorHandler && errorHandler(status);
+          }
+        }
+      };
+      xhr.send();
+    };
+
+    getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function( data ) {
+            var dataRegion = data.results[0].address_components[4].long_name;
+            console.log(dataRegion);
+            document.getElementById("newregion").innerHTML = dataRegion;
+            console.log(latitudeGeoloc, longitudeGeoloc);
             console.log(data);
             console.log(data.results[6].address_components[0].long_name);
 
@@ -149,10 +179,14 @@ angular.module('starter.controllers', [])
                  description.innerHTML = 'Aucune thématique est disponible pour cette région' + description.innerHTML;
                  region.innerHTML = dataRegion;
              }
+    }, function(status) {
+        function onErrorGeo(error) {
+              alert('code: '    + error.code    + '\n' +
+                   'message: ' + error.message + '\n');
+           }
+          navigator.geolocation.getCurrentPosition(onSuccessGeo, onErrorGeo);
+    });
 
-             console.log(position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude);
-
-      });
   }
   function onErrorGeo(error) {
       alert('code: '    + error.code    + '\n' +
