@@ -60,6 +60,31 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+
+  $scope.select = function(picture) {
+      for(i=1; i<=4; i++){
+          document.getElementById("img"+i).className = "";
+      }
+      document.getElementById("img"+picture).className = "selected";
+
+      window.localStorage.setItem("stockageImage", picture);
+  };
+
+  $scope.saveProfil = function($scope) {
+      var pseudo = document.getElementById("profilPseudo").value;
+      var image = window.localStorage.getItem("stockageImage");
+      window.localStorage.setItem("stockagePseudo", pseudo);
+
+      document.getElementById("nameuser").innerHTML = pseudo;
+      document.getElementById("userimg").src = "img/"+image+".png";
+  };
+
+  var pseudo = window.localStorage.getItem("stockagePseudo");
+  if(pseudo) document.getElementById("profilPseudo").value = pseudo;
+
+  var image = window.localStorage.getItem("stockageImage");
+  document.getElementById("img"+image).className = "selected";
+
 })
 
 .controller('CameraCtrl', function($scope, Chats) {
@@ -69,7 +94,6 @@ angular.module('starter.controllers', [])
      $scope.check = function(idChat) {
           $scope.chats[idChat].check = !$scope.chats[idChat].check;
      };
-
 
     $scope.cameraLaunch = function($scope) {
         openFilePicker();
@@ -97,6 +121,7 @@ angular.module('starter.controllers', [])
             console.log(data.results[6].address_components[0].long_name);
 
             var dataRegion = data.results[6].address_components[0].long_name;
+            console.log(dataRegion);
             var region = document.getElementById('region');
             var title = document.getElementById('title');
             var description = document.getElementById('description');
@@ -133,7 +158,11 @@ angular.module('starter.controllers', [])
       alert('code: '    + error.code    + '\n' +
            'message: ' + error.message + '\n');
    }
-  navigator.geolocation.getCurrentPosition(onSuccessGeo, onErrorGeo);
+
+  document.addEventListener("deviceready", getGeoloc, false);
+  function getGeoloc() {
+      navigator.geolocation.getCurrentPosition(onSuccessGeo, onErrorGeo);
+  }
 
 });
 
@@ -142,7 +171,22 @@ angular.module('starter.controllers', [])
 document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
 
-StatusBar.hide();
+  StatusBar.hide();
+
+  var image = window.localStorage.getItem("stockageImage");
+  if(image.length <= 0){
+      image = 1;
+      window.localStorage.setItem("stockageImage", "1");
+  }
+
+  var pseudo = window.localStorage.getItem("stockagePseudo");
+  if(pseudo.length <= 0){
+      window.localStorage.setItem("stockagePseudo", "user");
+      pseudo = user;
+  }
+
+  document.getElementById("userimg").src = "img/"+image+".png";
+  document.getElementById("nameuser").innerHTML = pseudo;
 
   function onSuccess(heading) {
      //alert("heading :" +heading.magneticHeading);
