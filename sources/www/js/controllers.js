@@ -90,7 +90,8 @@ angular.module('starter.controllers', [])
 
 .controller('GeolocationCtrl', function($scope) {
 
-  function onSuccess(position) {
+  function onSuccessGeo(position) {
+
       $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function( data ) {
             console.log(data);
             console.log(data.results[6].address_components[0].long_name);
@@ -128,19 +129,37 @@ angular.module('starter.controllers', [])
 
       });
   }
-  function onError(error) {
+  function onErrorGeo(error) {
       alert('code: '    + error.code    + '\n' +
            'message: ' + error.message + '\n');
    }
-
-  navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
+  navigator.geolocation.getCurrentPosition(onSuccessGeo, onErrorGeo);
 
 });
 
 
+document.addEventListener("deviceready", whenLoaded, false);
+function whenLoaded() {
 
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    StatusBar.hide();
+StatusBar.hide();
+
+  function onSuccess(heading) {
+     //alert("heading :" +heading.magneticHeading);
+     if(heading.magneticHeading == 1){
+        document.getElementById("send-img").style.opacity = "0.5";
+     }
+     else document.getElementById("send-img").style.opacity = "1";
+  };
+
+  function onError(compassError) {
+     console.log('Compass error: ' + compassError.code);
+  };
+
+  var options = {
+      frequency: 3000
+  };
+
+  var watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+
+
 }
