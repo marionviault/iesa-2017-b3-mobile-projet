@@ -67,14 +67,6 @@ Install ionic :
 sudo npm install -g cordova ionic
 ```
 
-Install platforms :
-```
-ionic platform add ios
-ionic platform add android
-ionic build ios
-ionic build android
-```
-
 Install plugins :
 ```
 cordova plugin add cordova-plugin-splashscreen
@@ -83,6 +75,14 @@ cordova plugin add cordova-plugin-camera
 cordova plugin add cordova-plugin-geolocation
 cordova plugin add cordova-plugin-statusbar
 (optionnal) cordova plugin add cordova-plugin-device-orientation
+```
+
+Install platforms :
+```
+ionic platform add ios
+ionic platform add android
+ionic build ios
+ionic build android
 ```
 
 Launch iOS and android simulators on navigator :
