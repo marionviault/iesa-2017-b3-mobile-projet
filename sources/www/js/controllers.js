@@ -11,11 +11,25 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
+    $scope.chats = Chats.all();
 
    $scope.chats.forEach(function(element) {
-      Chats.searchContact(element.name, element.id);
+
+     var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+     var options      = new ContactFindOptions();
+     options.filter   = element.name;
+     options.multiple = false;
+     options.desiredFields = [navigator.contacts.fieldType.id];
+     options.hasPhoneNumber = true;
+
+      navigator.contacts.find(fields, function(contacts){
+         if(contacts.length > 0) $scope.chats[element.id].isContact = "oui";
+      }, function(){
+            alert("une erreur s'est produite")
+      }, options);
+
    });
+
 
   $scope.remove = function(chat) {
     Chats.remove(chat);
@@ -24,6 +38,22 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
+  $scope.chats = Chats.all();
+
+
+   var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+   var options      = new ContactFindOptions();
+   options.filter   = $scope.chat.name;
+   options.multiple = false;
+   options.desiredFields = [navigator.contacts.fieldType.id];
+   options.hasPhoneNumber = true;
+
+
+    navigator.contacts.find(fields, function(contacts){
+       if(contacts.length > 0) $scope.chats[$scope.chat.id].isContact = "oui";
+    }, function(){
+          alert("une erreur s'est produite")
+    }, options);
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -60,12 +90,14 @@ angular.module('starter.controllers', [])
 
 .controller('GeolocationCtrl', function($scope) {
 
-  function onSuccess(position) {
+  function onSuccessGeo(position) {
+
       $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function( data ) {
             console.log(data);
             console.log(data.results[6].address_components[0].long_name);
 
             var dataRegion = data.results[6].address_components[0].long_name;
+            console.log(dataRegion);
             var region = document.getElementById('region');
             var title = document.getElementById('title');
             var description = document.getElementById('description');
@@ -98,48 +130,37 @@ angular.module('starter.controllers', [])
 
       });
   }
-  function onError(error) {
+  function onErrorGeo(error) {
       alert('code: '    + error.code    + '\n' +
            'message: ' + error.message + '\n');
    }
-
-  navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
+  navigator.geolocation.getCurrentPosition(onSuccessGeo, onErrorGeo);
 
 });
+
 
 document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
 
-  alert(navigator.compass);
-  // function onSuccess(heading) {
-  //     alert('Heading: ' + heading.magneticHeading)
-  // };
-
-  // function onError(compassError) {
-  //     alert('Compass error: ' + compassError.code);
-  // };
-
-  // var options = {
-  //     frequency: 1000
-  // }; // Update every 3 seconds
-
-  // var watchID = navigator.compass.watchHeading(compassSuccess, compassError, options);
+StatusBar.hide();
 
   function onSuccess(heading) {
-      alert('Heading: ' + heading.magneticHeading);
+     //alert("heading :" +heading.magneticHeading);
+     if(heading.magneticHeading == 1){
+        document.getElementById("send-img").style.opacity = "0.5";
+     }
+     else document.getElementById("send-img").style.opacity = "1";
   };
 
-  function onError(error) {
-      alert('CompassError: ' + error.code);
+  function onError(compassError) {
+     console.log('Compass error: ' + compassError.code);
   };
 
-  navigator.compass.getCurrentHeading(onSuccess, onError);
+  var options = {
+      frequency: 3000
+  };
 
-}
+  var watchID = navigator.compass.watchHeading(onSuccess, onError, options);
 
 
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    StatusBar.hide();
 }
