@@ -14,3 +14,5 @@ Enfin, j'ai déjà eu l'occasion d'aborder les méthodes agiles en cours auparav
 Floriane : L'agilité est une méthode intéressante lorsque le client est réactif, ouvert aux propositions, et souple avec son emploi du temps. du côté de l'équipe et de l'entreprise, ces retours permettent de mieux avancer sur le projet, mais nécessite des ressources à temps plein sur ce même projet. Côté client, ce dernier peut intéragir avec l'équipe quand il le souhaite, ce qui peut engendre un débordement, voire un abus sur de nouvelles fonctionnalités qui n'ont pas été prévues lors de la session du recueil des besoins. 
 C'est une méthode à prendre avec précautions, et à adapter selon le type de client. 
 
+
+Marjorie : La méthode agile nous permet d'être plus organisé. En effet, je trouve qu'on avance plus vite en ayant des retours quotidien (ou hebdo) du client: on peut tout de suite se rendre compte de ce qui va ou pas et avisé pour ne pas travailler dans le "vide" et de devoir tout changer à la dernière minute. Mais cette méthode demande un certain investissement de l'équipe mais aussi du client: ce dernier doit faire l'effot de se montrer réactif pour le bondéroulé du projet.

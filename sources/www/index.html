@@ -15,9 +15,10 @@
           .catch(err => console.log('Error', err));
       }
     </script>-->
-
+    <link href="https://fonts.googleapis.com/css?family=Jaldi:400,700|Work+Sans:400,500" rel="stylesheet">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -31,17 +32,17 @@
 
   </head>
   <body ng-app="starter" onload="loader()">
-  <div id="astuce-container">
+  <div id="astuce-container" onclick="hide()">
       <div id="astuces">
       </div>
     </div>
     <!--
       The nav bar that will be updated as we navigate between views.
-    -->
+
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
-    </ion-nav-bar>
+    </ion-nav-bar>-->
       <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
