@@ -1,3 +1,4 @@
+# Points
 
 Type = Pièce
 Points Normaux :
