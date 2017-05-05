@@ -13,20 +13,6 @@
       return options;
   }
 
-
-    function enviarFirebase(file, nombre) {
-    var storageRef = firebase.storage().ref();
-    var uploadTask = storageRef.child('images/' + nombre).put(file);
-    uploadTask.on('state_changed', function (snapshot) {
-        alert(snapshot);
-    }, function (error) {
-        alert(error);
-    }, function () {
-        var downloadURL = uploadTask.snapshot.downloadURL;
-        alert(downloadURL);
-    });
-}
-
   function openFilePicker() {
 
     var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
@@ -73,6 +59,19 @@
 
         uploadTask.on('state_changed', function(snapshot) {
             console.log(snapshot);
+            
+            var storageRef = firebase.storage().ref();
+            var newSchmRef = storageRef.child('Schm/'+nombreParaGuardar);
+            var schmNameTxt = document.getElementById('cameratext').value;
+            var pseudo = window.localStorage.getItem("stockagePseudo");
+
+            newSchmRef.getDownloadURL().then(function (url) {
+
+              addSchm(Date.now(), schmNameTxt, url, pseudo, "Floflo");
+
+            }).catch(function (error) {
+          });
+
         }, function(error) {
             console.log(error);
         }, function() {
@@ -89,12 +88,7 @@
      alert(error);
     }, options);
 
-
-    
-
-      // var storage = firebase.storage();
-      // var storageRef = storage.ref();
-      // var newSchmRef = storageRef.child('Schm/newSchm.jpg');
+      
 
       // ref.put(imageUri).then(function(snapshot) {
       // });
