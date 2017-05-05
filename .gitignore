@@ -2,3 +2,4 @@ sources/platforms
 .DS_Store
 .idea/
 sources/.idea
+**/.DS_Store
