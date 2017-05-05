@@ -14,7 +14,6 @@ angular.module('starter.controllers', [])
     $scope.chats = Chats.all();
 
    $scope.chats.forEach(function(element) {
-
      var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
      var options      = new ContactFindOptions();
      options.filter   = element.name;
@@ -27,7 +26,6 @@ angular.module('starter.controllers', [])
       }, function(){
             alert("une erreur s'est produite")
       }, options);
-
    });
 
 
@@ -89,13 +87,18 @@ angular.module('starter.controllers', [])
 
 .controller('CameraCtrl', function($scope, Chats) {
 
-    $scope.chats =  Chats.all();
+    $scope.chats = Chats.all();
+    $scope.actual = "nobody";
 
      $scope.check = function(idChat) {
+          $scope.chats.forEach(function(element) {
+              $scope.chats[element.id].check = false;
+          });
           $scope.chats[idChat].check = !$scope.chats[idChat].check;
+          $scope.actual = $scope.chats[idChat].name;
      };
 
-    $scope.cameraLaunch = function($scope) {
+    $scope.cameraLaunch = function() {
         openFilePicker();
     };
 
@@ -104,8 +107,9 @@ angular.module('starter.controllers', [])
         document.getElementById("close-img").style.display = "none";
     };
 
-    $scope.cameraSend = function($scope) {
-        alert("votre image a bien été envoyée");
+    $scope.cameraSend = function() {
+        alert("votre image a bien été envoyée à ");
+        alert($scope.actual);
         document.getElementById("send-img").innerHTML = "";
         document.getElementById("close-img").style.display = "none";
         document.getElementById("cameratext").value = "";
@@ -122,8 +126,6 @@ document.addEventListener("deviceready", whenLoaded, false);
 function whenLoaded() {
 
   StatusBar.hide();
-
-  alert('c la merd');
 
   var image = window.localStorage.getItem("stockageImage");
   if(image.length <= 0){

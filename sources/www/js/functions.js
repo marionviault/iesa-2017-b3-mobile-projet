@@ -32,11 +32,9 @@
     var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
     var options = setOptions(srcType);
 
-
-      navigator.camera.getPicture(function cameraSuccess(imageUri) {
-      document.getElementById("send-img").innerHTML = "<h3>Ma photo :</h3><img src='"+imageUri+"' style='width:70%;display:block;margin:auto;' />";
-      document.getElementById("close-img").style.display = "block";
-
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+    document.getElementById("send-img").innerHTML = "<h3>Ma photo :</h3><img src='"+imageUri+"' style='width:70%;display:block;margin:auto;' />";
+    document.getElementById("close-img").style.display = "block";
 
     var storageRef = firebase.storage().ref();
 
@@ -56,9 +54,9 @@
         return blob;
     };
 
-     var directorioFuente = imageUri.substring(0, imageUri.lastIndexOf('/') + 1),
-          archivoFuente = imageUri.substring(imageUri.lastIndexOf('/') + 1, imageUri.length),
-          nombreParaGuardar = new Date().valueOf() + archivoFuente;
+   var directorioFuente = imageUri.substring(0, imageUri.lastIndexOf('/') + 1),
+        archivoFuente = imageUri.substring(imageUri.lastIndexOf('/') + 1, imageUri.length),
+        nombreParaGuardar = new Date().valueOf() + archivoFuente;
 
 
     var getFileObject = function(filePathOrUrl, cb) {
