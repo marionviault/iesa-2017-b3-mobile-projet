@@ -51,6 +51,7 @@ cordova plugin add cordova-plugin-camera
 cordova plugin add cordova-plugin-geolocation
 cordova plugin add cordova-plugin-statusbar
 (optionnal) cordova plugin add cordova-plugin-device-orientation
+cordova plugin add cordova-plugin-file
 ```
 
 Install platforms :

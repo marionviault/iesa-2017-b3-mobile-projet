@@ -14,7 +14,6 @@ angular.module('starter.controllers', [])
     $scope.chats = Chats.all();
 
    $scope.chats.forEach(function(element) {
-
      var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
      var options      = new ContactFindOptions();
      options.filter   = element.name;
@@ -27,7 +26,6 @@ angular.module('starter.controllers', [])
       }, function(){
             alert("une erreur s'est produite")
       }, options);
-
    });
 
 
@@ -89,13 +87,18 @@ angular.module('starter.controllers', [])
 
 .controller('CameraCtrl', function($scope, Chats) {
 
-    $scope.chats =  Chats.all();
+    $scope.chats = Chats.all();
+    $scope.actual = "nobody";
 
      $scope.check = function(idChat) {
+          $scope.chats.forEach(function(element) {
+              $scope.chats[element.id].check = false;
+          });
           $scope.chats[idChat].check = !$scope.chats[idChat].check;
+          $scope.actual = $scope.chats[idChat].name;
      };
 
-    $scope.cameraLaunch = function($scope) {
+    $scope.cameraLaunch = function() {
         openFilePicker();
     };
 
@@ -104,11 +107,26 @@ angular.module('starter.controllers', [])
         document.getElementById("close-img").style.display = "none";
     };
 
-    $scope.cameraSend = function($scope) {
-        alert("votre image a bien été envoyée");
+    $scope.cameraSend = function() {
+
+        alert("Votre image a bien été envoyée à "+$scope.actual);
+        var storageRef = firebase.storage().ref();
+        var imgSave = document.getElementById("saveImgName").value;
+        var newSchmRef = storageRef.child(imgSave);
+        var schmNameTxt = document.getElementById('cameratext').value;
+        var pseudo = window.localStorage.getItem("stockagePseudo");
+
+        newSchmRef.getDownloadURL().then(function (url) {
+            addSchm(Date.now(), schmNameTxt, url, pseudo, $scope.actual);
+        }).catch(function (error) {
+            console.log(erreur);
+        });
+
         document.getElementById("send-img").innerHTML = "";
         document.getElementById("close-img").style.display = "none";
         document.getElementById("cameratext").value = "";
+        document.getElementById("saveImgName").value = "";
+        
     };
 })
 
@@ -137,6 +155,7 @@ function whenLoaded() {
 
   document.getElementById("userimg").src = "img/"+image+".png";
   document.getElementById("nameuser").innerHTML = pseudo;
+
 
   function onSuccess(heading) {
      //alert("heading :" +heading.magneticHeading);
