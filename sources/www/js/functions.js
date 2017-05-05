@@ -47,9 +47,6 @@
 
     var getFileObject = function(filePathOrUrl, cb) {
         getFileBlob(filePathOrUrl, function(blob) {
-
-           
-            alert(nombreParaGuardar);
             cb(blobToFile(blob, nombreParaGuardar));
         });
     };
