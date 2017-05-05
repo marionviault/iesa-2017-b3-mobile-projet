@@ -18,11 +18,9 @@
     var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
     var options = setOptions(srcType);
 
-
-      navigator.camera.getPicture(function cameraSuccess(imageUri) {
-      document.getElementById("send-img").innerHTML = "<h3>Ma photo :</h3><img src='"+imageUri+"' style='width:70%;display:block;margin:auto;' />";
-      document.getElementById("close-img").style.display = "block";
-
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+    document.getElementById("send-img").innerHTML = "<h3>Ma photo :</h3><img src='"+imageUri+"' style='width:70%;display:block;margin:auto;' />";
+    document.getElementById("close-img").style.display = "block";
 
     var storageRef = firebase.storage().ref();
 
@@ -42,16 +40,13 @@
         return blob;
     };
 
-     var directorioFuente = imageUri.substring(0, imageUri.lastIndexOf('/') + 1),
-          archivoFuente = imageUri.substring(imageUri.lastIndexOf('/') + 1, imageUri.length),
-          nombreParaGuardar = new Date().valueOf() + archivoFuente;
+   var directorioFuente = imageUri.substring(0, imageUri.lastIndexOf('/') + 1),
+        archivoFuente = imageUri.substring(imageUri.lastIndexOf('/') + 1, imageUri.length),
+        nombreParaGuardar = new Date().valueOf() + archivoFuente;
 
 
     var getFileObject = function(filePathOrUrl, cb) {
         getFileBlob(filePathOrUrl, function(blob) {
-
-           
-            console.log(nombreParaGuardar);
             cb(blobToFile(blob, nombreParaGuardar));
         });
     };
@@ -60,20 +55,9 @@
         var uploadTask = storageRef.child('Schm/'+nombreParaGuardar).put(fileObject);
 
         uploadTask.on('state_changed', function(snapshot) {
-            console.log(snapshot);
-            
-            var storageRef = firebase.storage().ref();
+        
             var newSchmRef = storageRef.child('Schm/'+nombreParaGuardar);
-            var schmNameTxt = document.getElementById('cameratext').value;
-            var pseudo = window.localStorage.getItem("stockagePseudo");
-
-            newSchmRef.getDownloadURL().then(function (url) {
-
-              addSchm(Date.now(), schmNameTxt, url, pseudo, "Floflo");
-
-            }).catch(function (error) {
-          });
-
+            document.getElementById("saveImgName").value = 'Schm/'+nombreParaGuardar;
         }, function(error) {
             console.log(error);
         }, function() {
@@ -86,21 +70,11 @@
 
 
     }, function cameraError(error) {
-     alert("Une erreur s'est produite.");
-     alert(error);
+     console.log("Une erreur s'est produite.");
+     console.log(error);
     }, options);
 
       
-
-      // ref.put(imageUri).then(function(snapshot) {
-      // });
-
-      // newSchmRef.getDownloadURL().then(function (url) {
-
-      //   addSchm("1", "banane", url, "Tomtom", "Floflo");
-
-      // }).catch(function (error) {
-      // });
   }
 
 
