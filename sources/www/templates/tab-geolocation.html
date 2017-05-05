@@ -5,8 +5,13 @@
   <ion-content class="padding">
     <h2 id="title"></h2>
     <h3 id="region"></h3>
+    <h3 id="newregion"></h3>
     <h4 id="places"></h4>
     <p id="description"></p>
-
+    <label>Coordonnée latitude : </label>
+      <input type="number" id="latitudeGeoloc" value=""/>
+    <label>Coordonnée longitude : </label>
+      <input type="number" id="longitudeGeoloc" value=""/>
+    <p><button type="submit" onclick="sendValueGeoloc()" class="btnStylay">Envoyer</button></p>
   </ion-content>
 </ion-view>

@@ -1,9 +1,22 @@
 <ion-view view-title="Account">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
+
+      <ion-item>
+        <input type="text" placeholder="Pseudo" id="profilPseudo"></input>
+      </ion-item>
+
+      <ion-item>
+        <img src="img/1.png" id="img1" style="width: 64px; height: 64px" ng-click="select(1)">
+        <img src="img/2.png" id="img2" style="width: 64px; height: 64px" ng-click="select(2)">
+        <img src="img/3.png" id="img3" style="width: 64px; height: 64px" ng-click="select(3)">
+        <img src="img/4.png" id="img4" ng-click="select(4)" style="width: 64px; height: 64px">
+      </ion-item>
+
+      <ion-item>
+        <button type="submit" ng-click="saveProfil()">Sauvegarder</button>
+      </ion-item>
+
     </ion-list>
   </ion-content>
 </ion-view>
