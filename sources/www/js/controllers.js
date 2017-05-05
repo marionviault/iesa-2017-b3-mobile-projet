@@ -108,11 +108,25 @@ angular.module('starter.controllers', [])
     };
 
     $scope.cameraSend = function() {
-        alert("votre image a bien été envoyée à ");
-        alert($scope.actual);
+
+        alert("Votre image a bien été envoyée à "+$scope.actual);
+        var storageRef = firebase.storage().ref();
+        var imgSave = document.getElementById("saveImgName").value;
+        var newSchmRef = storageRef.child(imgSave);
+        var schmNameTxt = document.getElementById('cameratext').value;
+        var pseudo = window.localStorage.getItem("stockagePseudo");
+
+        newSchmRef.getDownloadURL().then(function (url) {
+            addSchm(Date.now(), schmNameTxt, url, pseudo, $scope.actual);
+        }).catch(function (error) {
+            console.log(erreur);
+        });
+
         document.getElementById("send-img").innerHTML = "";
         document.getElementById("close-img").style.display = "none";
         document.getElementById("cameratext").value = "";
+        document.getElementById("saveImgName").value = "";
+        
     };
 })
 
@@ -141,6 +155,7 @@ function whenLoaded() {
 
   document.getElementById("userimg").src = "img/"+image+".png";
   document.getElementById("nameuser").innerHTML = pseudo;
+
 
   function onSuccess(heading) {
      //alert("heading :" +heading.magneticHeading);

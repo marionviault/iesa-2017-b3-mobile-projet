@@ -49,7 +49,7 @@
         getFileBlob(filePathOrUrl, function(blob) {
 
            
-            console.log(nombreParaGuardar);
+            alert(nombreParaGuardar);
             cb(blobToFile(blob, nombreParaGuardar));
         });
     };
@@ -58,20 +58,9 @@
         var uploadTask = storageRef.child('Schm/'+nombreParaGuardar).put(fileObject);
 
         uploadTask.on('state_changed', function(snapshot) {
-            console.log(snapshot);
-            
-            var storageRef = firebase.storage().ref();
+        
             var newSchmRef = storageRef.child('Schm/'+nombreParaGuardar);
-            var schmNameTxt = document.getElementById('cameratext').value;
-            var pseudo = window.localStorage.getItem("stockagePseudo");
-
-            newSchmRef.getDownloadURL().then(function (url) {
-
-              addSchm(Date.now(), schmNameTxt, url, pseudo, "Floflo");
-
-            }).catch(function (error) {
-          });
-
+            document.getElementById("saveImgName").value = 'Schm/'+nombreParaGuardar;
         }, function(error) {
             console.log(error);
         }, function() {
@@ -84,21 +73,11 @@
 
 
     }, function cameraError(error) {
-     alert("Une erreur s'est produite.");
-     alert(error);
+     console.log("Une erreur s'est produite.");
+     console.log(error);
     }, options);
 
       
-
-      // ref.put(imageUri).then(function(snapshot) {
-      // });
-
-      // newSchmRef.getDownloadURL().then(function (url) {
-
-      //   addSchm("1", "banane", url, "Tomtom", "Floflo");
-
-      // }).catch(function (error) {
-      // });
   }
 
 
