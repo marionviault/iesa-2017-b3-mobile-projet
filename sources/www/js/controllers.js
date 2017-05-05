@@ -123,8 +123,6 @@ function whenLoaded() {
 
   StatusBar.hide();
 
-  alert('c la merd');
-
   var image = window.localStorage.getItem("stockageImage");
   if(image.length <= 0){
       image = 1;

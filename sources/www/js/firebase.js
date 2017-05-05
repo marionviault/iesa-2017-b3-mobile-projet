@@ -21,7 +21,4 @@ function addSchm(schmId, schmName, schmImage, schmFrom, schmTo) {
         schmTo: schmTo
     });
 }
-// var schmImage1 = storageRef.child('Schm/banana-close-spotted.jpg').fullPath;
-
-// addSchm("1", "banane", schmImage1, "Tomtom", "Floflo");
 

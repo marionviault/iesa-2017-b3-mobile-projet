@@ -26,20 +26,6 @@
      console.log("Une erreur s'est produite.");
      console.log(error);
     }, options);
-
-      var storage = firebase.storage();
-      var storageRef = storage.ref();
-      var newSchmRef = storageRef.child('Schm/newSchm.jpg');
-
-      ref.put(imageUri).then(function(snapshot) {
-      });
-
-      newSchmRef.getDownloadURL().then(function (url) {
-
-        addSchm("1", "banane", url, "Tomtom", "Floflo");
-
-      }).catch(function (error) {
-      });
   }
 
 
